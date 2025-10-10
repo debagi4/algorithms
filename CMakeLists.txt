@@ -7,4 +7,5 @@ add_executable(algo
         labs/0.cpp
         labs/a.cpp
         labs/d.cpp
-        labs/b.cpp)
+        labs/b.cpp
+)
