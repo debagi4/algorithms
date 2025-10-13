@@ -381,4 +381,53 @@ public:
 - Дерево отрезков. (O(R * logN))
 
 
+---
+
+# Задача F
+
+[Условие](./resources/f.pdf)
+
+N - Длина текста
+M - Количество слов
+
+Пространственная сложность: O(1)
+Вычислительная сложность: O(N)
+
+Идея решения:
+Используем два указателя: первый на позицию в тексте, второй - в текущем слове.
+
+Если слово не закончилось - NO
+Если дошли до конца текста - NO
+
+```c++
+bool IsAvailable(const std::string& text, const std::vector<std::string>& words) {
+  int const text_len = static_cast<int>(text.size());
+  int const words_len = static_cast<int>(words.size());
+  int current = 0;
+  for (int i = 0; i < words_len; i++) {
+    const std::string& word = words[i];
+    size_t word_index = 0;
+
+    while (current < text_len && word_index < word.size()) {
+      if (text[current] == word[word_index]) {
+        word_index++;
+      }
+      current++;
+    }
+
+    if (word_index < word.size()) {
+      return false;
+    }
+
+    if (i != words_len - 1) {
+      if (current >= text_len) {
+        return false;
+      }
+      current++;
+    }
+  }
+  return true;
+}
+```
+
 
